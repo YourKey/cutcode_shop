@@ -53,7 +53,7 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single'],
+            'channels' => ['single', 'tg'],
             'ignore_exceptions' => false,
         ],
 
@@ -68,6 +68,14 @@ return [
             'path' => storage_path('logs/laravel.log'),
             'level' => env('LOG_LEVEL', 'debug'),
             'days' => 14,
+        ],
+
+        'tg' => [
+            'driver' => 'custom',
+            'via' => \App\Logging\Telegram\TelegramLoggerFactory::class,
+            'level' => env('LOG_LEVEL', 'debug'),
+            'chat_id' => '214312081',
+            'token' => '6128395658:AAHRwKlqHQcxyuWehMwBt312m_lkJcP_OAE',
         ],
 
         'slack' => [
